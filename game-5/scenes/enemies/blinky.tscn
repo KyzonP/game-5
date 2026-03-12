@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cvoam658x5n7c"]
+
+[ext_resource type="Script" uid="uid://blwimvd6gx2jb" path="res://scripts/blinky.gd" id="1_h43xa"]
+[ext_resource type="Texture2D" uid="uid://brbtab05pwu0r" path="res://assets/GhostTest.png" id="2_hhhug"]
+
+[node name="Blinky" type="Node2D" unique_id=649898408]
+script = ExtResource("1_h43xa")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2017887264]
+modulate = Color(1, 0.110000014, 0.110000014, 1)
+texture = ExtResource("2_hhhug")

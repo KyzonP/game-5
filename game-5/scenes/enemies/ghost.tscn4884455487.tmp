@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ccy4m5dw06v2j"]
+
+[ext_resource type="Script" uid="uid://vcfphk3pfu7n" path="res://scripts/ghost.gd" id="1_ly0wf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkril"]
+size = Vector2(16, 16)
+
+[node name="Ghost" type="Area2D" unique_id=1147947758]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_ly0wf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=480820923]
+shape = SubResource("RectangleShape2D_dkril")

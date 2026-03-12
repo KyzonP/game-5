@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://1cl16nt6wpky"]
+
+[ext_resource type="Script" uid="uid://cssgtpg25pagu" path="res://scripts/character.gd" id="1_ksivd"]
+[ext_resource type="Texture2D" uid="uid://bmexgxslm6rws" path="res://assets/SamTest.png" id="2_wmuhm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ohbkr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wmuhm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32mhh"]
+size = Vector2(16, 16)
+
+[node name="Sam" type="Area2D" unique_id=827823229 groups=["player"]]
+collision_mask = 6
+script = ExtResource("1_ksivd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=108264579]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_ohbkr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1488719741]
+shape = SubResource("RectangleShape2D_32mhh")
