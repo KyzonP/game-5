@@ -2,8 +2,12 @@ extends Area2D
 
 var lastDir : Direction = Direction.RIGHT
 var moveDir : Direction = Direction.RIGHT
-var speed : float = 59.88
+var speed : float = 80.00
 var freeze : bool = false
+var pelletFreeze : bool = false
+var powerupFreeze : bool = false
+var powerupFreezeCounter : int = 0
+var powerupFreezeCounterMax : int = 3
 
 
 @export var helper : Node2D
@@ -17,6 +21,7 @@ enum Direction {UP, DOWN, LEFT, RIGHT, VOID}
 func _ready():
 	event_bus.restart.connect(reset)
 	event_bus.freeze.connect(freezeSam)
+	event_bus.ghostState.connect(ghostFrightenedToggle)
 	
 	refreshMovement()
 	
@@ -56,13 +61,21 @@ func _physics_process(delta):
 			global_position = centre
 			moveDir = Direction.VOID
 	
-	# Move in the direction currently set if not frozen
-	if !freeze:
+	# Move in the direction currently set if not frozen, or slowed by pellets/powerups
+	if !freeze and !pelletFreeze and !powerupFreeze:
 		match moveDir:
 			Direction.UP: global_position.y -= speed * delta
 			Direction.DOWN: global_position.y += speed * delta
 			Direction.LEFT: global_position.x -= speed * delta
 			Direction.RIGHT: global_position.x += speed * delta
+	elif pelletFreeze:
+		pelletFreeze = false
+	elif powerupFreeze:
+		if powerupFreezeCounter < powerupFreezeCounterMax:
+			powerupFreezeCounter += 1
+		else:
+			powerupFreezeCounter = 0
+			powerupFreeze = false
 		
 	### CHECK FOR OVERLAPPING AREA ###
 	var overlapping_areas = get_overlapping_areas()
@@ -71,10 +84,20 @@ func _physics_process(delta):
 		if area.is_in_group("ghost"):
 			var ghostCell = helper.maze.local_to_map(area.global_position)
 			if cell == ghostCell:
-				event_bus.emit_signal("endGame", true)
+				if !area.checkFrightened:
+					event_bus.emit_signal("endGame", true)
+				else:
+					pass
 				
 func freezeSam():
 	freeze = true
+	
+		
+func ghostFrightenedToggle(state):
+	if state == "frightened":
+		speed = level_stats.setStats(level_stats.scareSamSpeed)
+	else:
+		speed = level_stats.setStats(level_stats.samSpeed)
 		
 func reset(death, level):
 	# If a restart is happening due to a death
@@ -86,5 +109,7 @@ func reset(death, level):
 	else:
 		global_position = startPos
 		refreshMovement()
+		
+		speed = level_stats.setStats(level_stats.samSpeed)
 		
 	freeze = false

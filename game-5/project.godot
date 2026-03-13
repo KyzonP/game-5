@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 event_bus="*uid://c50x7ti3m65sg"
+level_stats="*uid://cd6u1q1sv2ywj"
 
 [display]
 

@@ -25,11 +25,6 @@ func _ready():
 	event_bus.pelletConsumed.connect(checkWin)
 	event_bus.endGame.connect(endGame)
 	event_bus.ghostState.connect(ghostFrightenedToggle)
-	
-	if level > 1 and level < 5:
-		stateTimes = [7,20,7,20,5,1033,0.016666]
-	elif level >= 5:
-		stateTimes = [5,20,5,20,5,1037,0.016666]
 		
 func reset(death, level):
 	# If a restart is happening due to a death
@@ -46,6 +41,8 @@ func reset(death, level):
 			stateTimes = [7,20,7,20,5,1033,0.016666]
 		elif level >= 5:
 			stateTimes = [5,20,5,20,5,1037,0.016666]
+			
+		stateTimes = level_stats.setStats(level_stats.stateTimes)
 			
 	freeze = false
 		
@@ -69,6 +66,7 @@ func endGame(death):
 			event_bus.emit_signal("restart", true, level)
 		else:
 			event_bus.emit_signal("restart", false, level + 1)
+			level_stats.level = level+1
 	
 func _physics_process(delta):
 	if !ghostFrightened:
@@ -87,6 +85,7 @@ func _physics_process(delta):
 		frightenedTimer += delta
 		if frightenedTimer >= frightenedTimerMax:
 			frightenedTimer = 0
+			ghostFrightened = true
 			if state == States.SCATTER:
 				event_bus.emit_signal("ghostState", "scatter")
 			elif state == States.CHASE:

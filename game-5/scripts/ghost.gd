@@ -4,7 +4,7 @@ extends Area2D
 var state : States = States.SCATTER
 var lastDir : Direction = Direction.VOID
 var moveDir : Direction = Direction.VOID
-var speed : float = 44.91
+var speed : float = 75.0
 @export var helper : Node2D
 var PRNG : int = 0
 
@@ -39,7 +39,7 @@ func _physics_process(delta):
 			moveDir = lastDir
 			
 	# Check if we can even keep moving forwards
-	if global_position.distance_to(centre) < (speed * delta):
+	if global_position.distance_to(centre) < (speed/1.5 * delta):
 		checkIntersection(cell, centre)
 	
 	# Move in the direction currently set
@@ -161,6 +161,7 @@ func changeState(newState : String):
 			state = States.SCATTER
 		elif newState == "chase":
 			state = States.CHASE
+		speed = level_stats.setStats(level_stats.ghostSpeed)
 	else:
 		if newState == "scatter":
 			state = States.SCATTER
@@ -169,6 +170,7 @@ func changeState(newState : String):
 		elif newState == "frightened":
 			state = States.FRIGHTENED
 			self.modulate = Color(0,0,255)
+			speed = level_stats.setStats(level_stats.scareGhostSpeed)
 			
 		_reverseDirection()
 		
@@ -176,6 +178,8 @@ func changeState(newState : String):
 
 # Instantly reverse direction for ghost. (If doing so won't clip through a wall, that is)
 func _reverseDirection():
+	print("reverse")
+	
 	var cell = helper.maze.local_to_map(global_position)
 	var centre = helper.maze.map_to_local(cell)
 	
@@ -226,6 +230,12 @@ func refreshMovement():
 	var cell = helper.maze.local_to_map(global_position)
 	var centre = helper.maze.map_to_local(cell)
 	global_position = centre
+	
+func checkFrightened():
+	if state == States.FRIGHTENED:
+		return true
+	else:
+		return false
 		
 # Class to hold potential directions
 class PotentialTiles:
