@@ -188,3 +188,5 @@ shadow_color = Color(0, 0, 0, 0.21176471)
 texture = ExtResource("5_m8146")
 texture_scale = 0.5
 height = 67.0
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="animLoop"]

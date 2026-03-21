@@ -23,6 +23,9 @@ enum Direction {UP, DOWN, LEFT, RIGHT, VOID}
 
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 
+### AUDIO ###
+var stepSound = preload("res://audio/step_randomizer.tres")
+
 func _ready():
 	event_bus.restart.connect(reset)
 	event_bus.freeze.connect(freezeSam)
@@ -162,6 +165,10 @@ func playAnim(direction, stop : bool = false):
 		anim.play()
 	else:
 		anim.stop()
+		
+func animLoop():
+	if anim.frame == 1 or anim.frame == 3:
+		AudioManager.play_sfx(stepSound, -45.0)
 	
 func disableShadows():
 	$PointLight2D.shadow_enabled = false

@@ -11,22 +11,22 @@ func save():
 	return save_dict
 	
 func save_game():
-	var save_game = FileAccess.open("user://pacSam.save", FileAccess.WRITE)
+	var save_data= FileAccess.open("user://pacSam.save", FileAccess.WRITE)
 	
 	var json_string = JSON.stringify(save())
 	
-	save_game.store_line(json_string)
+	save_data.store_line(json_string)
 	
 func load_data():
 	if not FileAccess.file_exists("user://pacSam.save"):
 		return
 	
-	var save_game = FileAccess.open("user://pacSam.save", FileAccess.READ)
+	var save_data = FileAccess.open("user://pacSam.save", FileAccess.READ)
 	
-	while save_game.get_position() < save_game.get_length():
-		var json_string = save_game.get_line()
+	while save_data.get_position() < save_data.get_length():
+		var json_string = save_data.get_line()
 		var json=JSON.new()
-		var parse_result = json.parse(json_string)
+		var _parse_result = json.parse(json_string)
 		var node_data = json.get_data()
 		
 		for i in node_data.keys():

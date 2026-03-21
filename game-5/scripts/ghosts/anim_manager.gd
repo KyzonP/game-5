@@ -54,7 +54,8 @@ func flashGhost(final : bool = false):
 		anim.visible = !current_state
 		scareAnim.visible = current_state
 	elif final:
-		eaten = false
-		eyes.visible = false
-		anim.visible = true
-		scareAnim.visible = false
+		if !get_parent().get_parent().beenEaten:
+			eaten = false
+			eyes.visible = false
+			anim.visible = true
+			scareAnim.visible = false

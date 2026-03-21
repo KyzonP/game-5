@@ -15,6 +15,9 @@ var clyde : bool = false
 
 signal scoreChanged
 
+### AUDIO ###
+var coinSound = preload("res://audio/coin_randomizer.tres")
+
 func _ready():
 	pellets = _countPellets()
 	_createGroups()
@@ -51,6 +54,8 @@ func removePellet(pellet):
 	scoreChanged.emit(10)
 	
 	event_bus.emit_signal("pelletConsumed")
+	
+	AudioManager.play_sfx(coinSound)
 	
 func removePowerUp(powerUp):
 	# If less than 100 (to stop it checking once all ghosts are released)

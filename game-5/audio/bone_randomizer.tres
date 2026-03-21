@@ -1,0 +1,33 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://cgpdivaq3nuvm"]
+
+[ext_resource type="AudioStream" uid="uid://cwp33y6l0xonu" path="res://assets/audio/bone/Bone1.wav" id="1_mes7j"]
+[ext_resource type="AudioStream" uid="uid://o0pgmeuksbw" path="res://assets/audio/bone/Bone2.wav" id="2_f3dtd"]
+[ext_resource type="AudioStream" uid="uid://bft6ktvxft37u" path="res://assets/audio/bone/Bone11.wav" id="3_gswvg"]
+[ext_resource type="AudioStream" uid="uid://devgobfw7sacq" path="res://assets/audio/bone/Bone12.wav" id="4_1tfcv"]
+[ext_resource type="AudioStream" uid="uid://c4xbllqseygs3" path="res://assets/audio/bone/Bone13.wav" id="5_thyt6"]
+[ext_resource type="AudioStream" uid="uid://fma0fl0ykhhu" path="res://assets/audio/bone/Bone14.wav" id="6_k1fsg"]
+[ext_resource type="AudioStream" uid="uid://dukpqq2h50843" path="res://assets/audio/bone/Bone3.wav" id="7_npana"]
+[ext_resource type="AudioStream" uid="uid://5qo6tsvfov2b" path="res://assets/audio/bone/Bone4.wav" id="8_em6vy"]
+[ext_resource type="AudioStream" uid="uid://dojnjj1hrdqit" path="res://assets/audio/bone/Bone5.wav" id="9_0s10u"]
+[ext_resource type="AudioStream" uid="uid://cyqiw52gy880w" path="res://assets/audio/bone/Bone6.wav" id="10_4gsu4"]
+[ext_resource type="AudioStream" uid="uid://fpm784iqsggm" path="res://assets/audio/bone/Bone7.wav" id="11_a5emb"]
+[ext_resource type="AudioStream" uid="uid://b27c7jxwxwq1w" path="res://assets/audio/bone/Bone8.wav" id="12_86awp"]
+[ext_resource type="AudioStream" uid="uid://djon2n3y7u6nb" path="res://assets/audio/bone/Bone9.wav" id="13_6fahh"]
+[ext_resource type="AudioStream" uid="uid://bmo2grpmeb58e" path="res://assets/audio/bone/Bone10.wav" id="14_p1bps"]
+
+[resource]
+streams_count = 14
+stream_0/stream = ExtResource("1_mes7j")
+stream_1/stream = ExtResource("2_f3dtd")
+stream_2/stream = ExtResource("7_npana")
+stream_3/stream = ExtResource("8_em6vy")
+stream_4/stream = ExtResource("9_0s10u")
+stream_5/stream = ExtResource("10_4gsu4")
+stream_6/stream = ExtResource("11_a5emb")
+stream_7/stream = ExtResource("12_86awp")
+stream_8/stream = ExtResource("13_6fahh")
+stream_9/stream = ExtResource("14_p1bps")
+stream_10/stream = ExtResource("3_gswvg")
+stream_11/stream = ExtResource("4_1tfcv")
+stream_12/stream = ExtResource("5_thyt6")
+stream_13/stream = ExtResource("6_k1fsg")

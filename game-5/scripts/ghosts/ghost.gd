@@ -30,6 +30,9 @@ signal scareGhost()
 signal ghostEaten()
 signal ghostRespawned()
 
+### AUDIO ###
+var deathSound = preload("res://audio/death_randomizer.tres")
+
 func _ready():
 	targetTile = helper.maze.local_to_map(Vector2.ZERO)
 	
@@ -290,6 +293,9 @@ func releaseDone():
 	refreshMovement(true)
 	
 func eaten():
+	# Audio
+	AudioManager.play_sfx(deathSound)
+	
 	# Signal for death anim
 	ghostEaten.emit()
 	
@@ -303,6 +309,8 @@ func eaten():
 	respawnTween.finished.connect(_eatenDone)
 	
 func _eatenDone():
+	beenEaten = false
+	
 	# Signal for respawn anim
 	ghostRespawned.emit()
 	
@@ -317,7 +325,7 @@ func _eatenDone():
 		
 	changeState(lastStateStr)
 	
-	beenEaten = false
+	
 	
 	release()
 	

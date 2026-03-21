@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://h64ekhyr177f"]
+
+[ext_resource type="Script" uid="uid://dm626ej4xl2dl" path="res://scripts/global/audio.gd" id="1_85pnb"]
+[ext_resource type="AudioStream" uid="uid://c5brmm36dm3qo" path="res://audio/hurt_randomizer.tres" id="2_iognr"]
+
+[node name="AudioManager" type="Node" unique_id=745417387]
+script = ExtResource("1_85pnb")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=913280084]
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=92193025]
+stream = ExtResource("2_iognr")
+volume_db = -30.0
+max_polyphony = 8

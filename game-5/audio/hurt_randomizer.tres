@@ -1,0 +1,16 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://c5brmm36dm3qo"]
+
+[ext_resource type="AudioStream" uid="uid://usqd6ptx130b" path="res://assets/audio/hurt/OW1.wav" id="1_p64fb"]
+[ext_resource type="AudioStream" uid="uid://df2s2out0eamq" path="res://assets/audio/hurt/OW2.wav" id="2_mxryh"]
+[ext_resource type="AudioStream" uid="uid://yp4wjb2ik1o4" path="res://assets/audio/hurt/OW3.wav" id="3_jnml2"]
+[ext_resource type="AudioStream" uid="uid://cfjen3fuc2yon" path="res://assets/audio/hurt/OW4.wav" id="4_pac5b"]
+[ext_resource type="AudioStream" uid="uid://vs3xcu7onq6g" path="res://assets/audio/hurt/OW5.wav" id="5_kumsl"]
+
+[resource]
+random_pitch = 1.0656005
+streams_count = 5
+stream_0/stream = ExtResource("1_p64fb")
+stream_1/stream = ExtResource("2_mxryh")
+stream_2/stream = ExtResource("3_jnml2")
+stream_3/stream = ExtResource("4_pac5b")
+stream_4/stream = ExtResource("5_kumsl")

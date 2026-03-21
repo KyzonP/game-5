@@ -4,10 +4,8 @@ extends HBoxContainer
 
 func _ready():
 	event_bus.fruitEaten.connect(add_acquired_bone)
-	print("Connected: ", event_bus.fruitEaten.is_connected(add_acquired_bone))
 
-func add_acquired_bone(anim_name):
-	print("now")
+func add_acquired_bone(_anim_name):
 	var new_bone = bone_scene.instantiate()
 	add_child(new_bone)
 	

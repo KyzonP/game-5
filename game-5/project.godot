@@ -20,8 +20,8 @@ config/icon="res://icon.svg"
 
 event_bus="*uid://c50x7ti3m65sg"
 level_stats="*uid://cd6u1q1sv2ywj"
-audio="*uid://dm626ej4xl2dl"
 save_load="*uid://dtujb7bs8puc0"
+AudioManager="*uid://h64ekhyr177f"
 
 [display]
 

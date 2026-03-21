@@ -40,7 +40,7 @@ func _input(event):
 				_on_released()
 		
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if held:
 		var center = parent.global_position
 		var mouse_pos = get_global_mouse_position()

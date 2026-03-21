@@ -32,12 +32,25 @@ var stateTimes = [7,20,7,20,5,20,5]
 
 enum States {CHASE, SCATTER, FRIGHTENED}
 
+### AUDIO ###
+var hurtSound = preload("res://audio/hurt_randomizer.tres")
+
+var speed_milestones = [
+	{"threshold": 50, "pitch": 1.1, "reached": false},
+	{"threshold": 100, "pitch": 1.2, "reached": false},
+	{"threshold": 150, "pitch": 1.3, "reached": false},
+	{"threshold": 200, "pitch": 1.4, "reached": false}
+]
+
 func _ready():
 	# Save data
 	save_load.load_data()
 	
+	# Start audio
+	AudioManager.play_music(AudioManager.soundtrack, 1.0)
+	
 	# Reset level stats
-	level_stats.level = 0
+	level_stats.level = 1
 	
 	# Link up mobile controls
 	checkMobile()
@@ -79,6 +92,9 @@ func reset(death, _levelNo):
 		
 	# If a restart is happening due to completion of the level
 	else:
+		# Audio
+		AudioManager.music_player.pitch_scale = 1.0
+		
 		stateTimer = 0
 		
 		level = level + 1
@@ -106,15 +122,25 @@ func checkWin():
 	
 	checkFruit()
 	
+	checkAudio()
+	
 	if pelletsEaten >= 244 and !won:
 		won = true
 		endGame(false)
 		
+func checkAudio():
+	for milestone in speed_milestones:
+		if pelletsEaten > milestone.threshold and not milestone.reached:
+			milestone.reached = true
+			AudioManager.music_player.pitch_scale = milestone.pitch
 		
 func endGame(death):
 	if !freeze:
 		freeze = true
 		event_bus.emit_signal("freeze")
+		
+		if death:
+			AudioManager.play_sfx(hurtSound)
 		
 		# Do a few things #
 		await get_tree().create_timer(2.0).timeout
